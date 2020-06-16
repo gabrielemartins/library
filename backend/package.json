@@ -11,5 +11,27 @@
     "express": "^4.17.1",
     "mongoose": "^5.9.19",
     "require-dir": "^1.2.0"
+  },
+  "scripts": {
+    "start": "nodemon start",
+    "commit": "npx git-cz"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "commitizen": "^4.1.2",
+    "cz-conventional-changelog": "^3.2.0",
+    "husky": "^4.2.5",
+    "nodemon": "^2.0.4"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   }
 }

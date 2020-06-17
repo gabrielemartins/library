@@ -10,6 +10,11 @@ upload = multer(multerConfig);
 routes.get("/books", BookController.index);
 routes.get("/book/:id", BookController.show);
 routes.post("/create-book", upload.single("file"), BookController.store);
+routes.put(
+  "/update-file/:id",
+  upload.single("file"),
+  BookController.updateFile
+);
 routes.put("/update-book/:id", BookController.update);
 routes.delete("/delete-book/:id", BookController.destroy);
 

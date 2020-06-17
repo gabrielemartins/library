@@ -46,6 +46,23 @@ module.exports = {
     return response.json(book);
   },
 
+  async updateFile(request, response) {
+    const imgInfos = ({
+      key,
+      originalname: name,
+      location: url,
+    } = request.file);
+    const cover = imgInfos;
+    const book = await Book.findByIdAndUpdate(
+      request.params.id,
+      { cover: cover },
+      {
+        new: true,
+      }
+    );
+    return response.json(book);
+  },
+
   async destroy(request, response) {
     await Book.findByIdAndDelete(request.params.id);
     return response.send("success");

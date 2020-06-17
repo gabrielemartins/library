@@ -1,19 +1,41 @@
 const mongoose = require("mongoose");
 const Book = mongoose.model("Book");
+const Author = mongoose.model("Author");
 
 module.exports = {
   async index(request, response) {
-    const books = await Book.find();
+    const books = await Book.find().populate("author");
     return response.json(books);
   },
 
   async store(request, response) {
-    const book = await Book.create(request.body);
+    const { title, year, pages, summary, review, author } = request.body;
+    const imgInfos = ({
+      key,
+      originalname: name,
+      location: url,
+    } = request.file);
+    const cover = imgInfos;
+
+    const book = await Book.create({
+      title,
+      year,
+      pages,
+      summary,
+      cover,
+      review,
+      author,
+    });
+
+    await Author.findByIdAndUpdate(author, { $push: { books: [book._id] } });
+
+    console.log(request.file);
+
     return response.json(book);
   },
 
   async show(request, response) {
-    const book = await Book.findById(request.params.id);
+    const book = await Book.findById(request.params.id).populate("author");
     return response.json(book);
   },
 

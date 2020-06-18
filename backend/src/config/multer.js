@@ -4,6 +4,7 @@ const crypto = require("crypto");
 const aws = require("aws-sdk");
 const multerS3 = require("multer-s3");
 
+// Configuration of file upload locally
 const storageTypes = {
   local: multer.diskStorage({
     destination: (req, file, callback) => {
@@ -17,7 +18,7 @@ const storageTypes = {
       });
     },
   }),
-
+  //Configuration of file upload at AWS S3
   s3: multerS3({
     s3: new aws.S3(),
     bucket: "imgs-uptutorial-teste",

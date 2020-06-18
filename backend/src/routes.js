@@ -5,7 +5,8 @@ const BookController = require("./controllers/BookController");
 const multer = require("multer");
 const multerConfig = require("./config/multer");
 
-upload = multer(multerConfig);
+//Variable receiving the middleware previously configured
+const upload = multer(multerConfig);
 
 routes.get("/books", BookController.index);
 routes.get("/book/:id", BookController.show);

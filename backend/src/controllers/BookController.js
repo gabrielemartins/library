@@ -39,8 +39,7 @@ module.exports = {
     const book = await Book.findByIdAndUpdate(request.params.id, request.body, {
       new: true,
     });
-    await console.log(oldBook.author);
-    await console.log(book.author);
+
     if (oldBook.author != book.author) {
       await Author.findByIdAndUpdate(oldBook.author, {
         $pull: { books: { $in: [book.id] } },
@@ -58,13 +57,16 @@ module.exports = {
       request.params.id,
       {
         cover: {
+          url: `${process.env.APP_URL}/files/${request.file.key}`,
           name: request.file.originalname,
           key: request.file.key,
-          url: request.file.location,
         },
       },
       {
         new: true,
+      },
+      () => {
+        console.log(request.file);
       }
     );
     return response.json(book);

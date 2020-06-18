@@ -35,9 +35,21 @@ module.exports = {
   },
 
   async update(request, response) {
+    const oldBook = await Book.findById(request.params.id);
     const book = await Book.findByIdAndUpdate(request.params.id, request.body, {
       new: true,
     });
+    await console.log(oldBook.author);
+    await console.log(book.author);
+    if (oldBook.author != book.author) {
+      await Author.findByIdAndUpdate(oldBook.author, {
+        $pull: { books: { $in: [book.id] } },
+      });
+      await Author.findByIdAndUpdate(book.author, {
+        $push: { books: [book.id] },
+      });
+    }
+
     return response.json(book);
   },
 
@@ -61,9 +73,10 @@ module.exports = {
   async destroy(request, response) {
     const book = await Book.findById(request.params.id);
     await Author.findByIdAndUpdate(book.author, {
-      $pull: { books: book._id },
+      $pull: { books: { $in: [book._id] } },
     });
-    await Book.findByIdAndDelete(request.params.id);
+    Book.findByIdAndDelete(request.params.ids);
+
     return response.send("success");
   },
 };

@@ -59,6 +59,10 @@ module.exports = {
   },
 
   async destroy(request, response) {
+    const book = await Book.findById(request.params.id);
+    await Author.findByIdAndUpdate(book.author, {
+      $pull: { books: book._id },
+    });
     await Book.findByIdAndDelete(request.params.id);
     return response.send("success");
   },

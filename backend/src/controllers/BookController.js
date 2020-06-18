@@ -26,9 +26,6 @@ module.exports = {
     });
 
     await Author.findByIdAndUpdate(author, { $push: { books: [book._id] } });
-
-    console.log(request.file);
-
     return response.json(book);
   },
 

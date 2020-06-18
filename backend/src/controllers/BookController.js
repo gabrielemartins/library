@@ -54,15 +54,15 @@ module.exports = {
   },
 
   async updateFile(request, response) {
-    const imgInfos = ({
-      key,
-      originalname: name,
-      location: url,
-    } = request.file);
-    const cover = imgInfos;
     const book = await Book.findByIdAndUpdate(
       request.params.id,
-      { cover: cover },
+      {
+        cover: {
+          name: request.file.originalname,
+          key: request.file.key,
+          url: request.file.location,
+        },
+      },
       {
         new: true,
       }

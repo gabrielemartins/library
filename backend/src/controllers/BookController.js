@@ -75,8 +75,9 @@ module.exports = {
     await Author.findByIdAndUpdate(book.author, {
       $pull: { books: { $in: [book._id] } },
     });
-    Book.findByIdAndDelete(request.params.ids);
 
-    return response.send("success");
+    await Book.findByIdAndDelete(request.params.id);
+
+    return response.json({ success: true });
   },
 };

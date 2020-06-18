@@ -10,19 +10,17 @@ module.exports = {
 
   async store(request, response) {
     const { title, year, pages, summary, review, author } = request.body;
-    const imgInfos = ({
-      key,
-      originalname: name,
-      location: url,
-    } = request.file);
-    const cover = imgInfos;
 
     const book = await Book.create({
       title,
       year,
       pages,
       summary,
-      cover,
+      cover: {
+        name: request.file.originalname,
+        key: request.file.key,
+        url: request.file.location,
+      },
       review,
       author,
     });

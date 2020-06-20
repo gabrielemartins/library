@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  app:
+    container_name: api
+    build: .
+    ports:
+      - "3333:3333"
+    links:
+      - mongo
+  mongo:
+    container_name: mongodb
+    image: mongo:latest
+    volumes:
+      - ./data/db
+    ports:
+      - "27017:27017"

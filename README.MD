@@ -1,6 +1,6 @@
 # :books: Simple Books - Back-end
 
-> Application for Simple Books library (Back-end part)
+> Application for Simple Books library (Code Challenge)
 
 Here you can find the back-end from the library application. It's an api that represents a CRUD (Create, Read, Update, and Delete) using JavaScript with [Node.js](https://nodejs.org/en/) and NoSQL Database with [MongoDB](https://www.mongodb.com)
 

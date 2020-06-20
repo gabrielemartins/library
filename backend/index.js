@@ -6,6 +6,9 @@ const requireDir = require("require-dir");
 const morgan = require("morgan");
 const path = require("path");
 
+const PORT = 3333;
+const HOST = "0.0.0.0";
+
 const app = express();
 
 app.use(express.json());
@@ -24,6 +27,4 @@ app.use("/files", express.static(path.resolve(__dirname, "tmp", "uploads")));
 
 app.use("/library", require("./src/routes"));
 
-app.listen(3333, () => {
-  console.log("Server running at port 3333");
-});
+app.listen(PORT, HOST);

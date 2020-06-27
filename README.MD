@@ -16,7 +16,7 @@ Create a .env file and insert those environment variables
 - :key: MONGO_URL = Your MongoDB url | *Ex: mongodb://localhost:3000/test*
 - :key: STORAGE_TYPE = Where the photos will be uploaded | *Options: local or s3*
 
-:warning: Obs: While the application isn't deployed, you can test the aws storage with your own AWS Bucket. Those are the environment variables requured to test the AWS Storage: 
+:warning: Obs: While the application isn't deployed, you can test the aws storage with your own AWS Bucket. Those are the environment variables required to test the AWS Storage: 
 
 - :key: BUCKET_NAME = Your AWS Bucket's name | *Ex: imgs-upload*
 - :key: AWS_ACCESS_KEY_ID = The key given by AWS | *Ex: a long String with letters and numbers*
@@ -54,7 +54,7 @@ git clone https://github.com/gabrielemartins/livraria.git
 cd livraria/backend
 docker build -t name-of-your-image .
 docker run -p 3333:3333 -d --name name-of-your-container name-of-your-image
-docker compose up
+docker-compose up
 docker start name-of-your-container
 ```
 

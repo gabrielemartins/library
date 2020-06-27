@@ -8,6 +8,23 @@ Here you can find the back-end from the library application. It's an api that re
 
 ### Project Infos
 
+### Environment Variables
+
+Create a .env file and insert those environment variables
+
+- :key: APP_ URL = Your application url | *Ex : http://localhost:3000*
+- :key: MONGO_URL = Your MongoDB url | *Ex: mongodb://localhost:3000/test*
+- :key: STORAGE_TYPE = Where the photos will be uploaded | *Options: local or s3*
+
+:warning: Obs: While the application isn't deployed, you can test the aws storage with your own AWS Bucket. Those are the environment variables requured to test the AWS Storage: 
+
+- :key: BUCKET_NAME = Your AWS Bucket's name | *Ex: imgs-upload*
+- :key: AWS_ACCESS_KEY_ID = The key given by AWS | *Ex: a long String with letters and numbers*
+- :key: AWS_SECRET_ACCESS_KEY= Other key given by AWS | *Ex: a long String with letters and numbers*
+- :key: AWS_DEFAULT_REGION = Your AWS Bucket's region | *Ex: us-east-1*
+
+
+
 ### Dependencies
 
 - :zap: [aws-sdk](https://github.com/aws/aws-sdk-js) - AWS SDK for JavaScript
@@ -30,7 +47,7 @@ Here you can find the back-end from the library application. It's an api that re
 
 ### How to use development setup
 
-This application uses Docker to make easier to share the setup. It hasn't been publish at Docker Hub, so for now you will need clone the repository through your terminal. Make sure you have [Docker](https://www.docker.com/get-started) :whale: installed and you can use those commands:
+This application uses Docker to make easier to share the setup. It hasn't been publish at Docker Hub, so for now you will need clone the repository through your terminal and create .env file and set the environments variables. Make sure you have [Docker](https://www.docker.com/get-started) :whale: installed and you can use those commands:
 
 ```sh
 git clone https://github.com/gabrielemartins/livraria.git
